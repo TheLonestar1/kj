@@ -7,7 +7,9 @@ int main(int argc,char **argv) {
 		return 1;
 	}
 	if(argv[1][1] == 'c'){
-			FILE * input, * output;
+			FILE * input, *output;
+			int x1,x2;
+			struct bstree *tree;
 			input = fopen(argv[4],"r");
 			if(input == NULL) {
 				printf("Error opening file %s \n", argv[4]);
@@ -17,25 +19,18 @@ int main(int argc,char **argv) {
 			char *coder  = (char*) malloc(sizeof(char));
 			fread(words, sizeof(char), 100, input);
 			fclose(input);
-			char count_word[100];
-			count(words, 10, count_word);
+			struct kluch counters[10];
+			count(words, 10, counters);
 			output = fopen(argv[3],"wb");
 			if(output == NULL) {
 				printf("Error opening file %s \n", argv[4]);
 				return 1;
 			}
-			coder << 8;
-			for(int i = 0; i < 10; i++){
-				for(j = 0; j < 4; j++){
-					if(words[i] == count_word[j]) {
-											
-					}
-				}
-			}
+			sfcompress(counters,4,4,tree);
 
 
 
-			}
+			
 			fclose(output);
 			return 0;
 	}
